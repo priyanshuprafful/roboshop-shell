@@ -4,3 +4,4 @@ systemctl enable mongod
 systemctl start mongod
 
 ## Update of the configuration file /etc/mongod.conf from 127 .0.0.1 with 0.0.0.0
+#
