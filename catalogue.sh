@@ -42,8 +42,8 @@ print_head "Copy MongoDB repo file "
 cp configs/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>{log_file}
 
 print_head "Installing Mongo Client"
-yum install mongodb-org-shell -y
+yum install mongodb-org-shell -y &>>{log_file}
 
 print_head "Load Schema "
-mongo --host mongodb.saraldevops.online </app/schema/catalogue.js
+mongo --host mongodb.saraldevops.online </app/schema/catalogue.js &>>{log_file}
 
