@@ -1,10 +1,4 @@
-code_dir=$(pwd)
-log_file=/tmp/roboshop.log
-rm -f ${log_file}
-
-print_head() {
-  echo -e "\e[36m$1\e[0m"
-}
+source common.sh
 
 print_head "Installing nginx"
 yum install nginx -y &>>${log_file}
@@ -36,3 +30,5 @@ systemctl restart nginx &>>${log_file}
 # Now the roboshop is configured
 # we are getting this error that no such file found while running the scriptconfigs/nginx-roboshop.conf /etc/nginx/default.d/roboshop.conf
 #We have solved this problem of directory not found as well .
+
+## we want the status of a command to be printed
