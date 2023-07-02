@@ -34,4 +34,5 @@ echo $?
 # we are getting this error that no such file found while running the scriptconfigs/nginx-roboshop.conf /etc/nginx/default.d/roboshop.conf
 #We have solved this problem of directory not found as well .
 
-## we want the status of a command to be printed
+## we want the status of a command to be printed , we have partially solved this by giving the status code.
+# we still need to figure out if any command is errored then we need to stop the script .
