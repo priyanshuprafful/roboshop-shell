@@ -36,3 +36,5 @@ status_check $?
 
 ## we want the status of a command to be printed , we have partially solved this by giving the status code.
 # we still need to figure out if any command is errored then we need to stop the script .
+
+# we have solved the stopping of script during failure using exit command as well .
