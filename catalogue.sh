@@ -3,32 +3,32 @@ source common.sh
 print_head "Configure NodeJS repo"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log_file}
 status_check $?
-echo $?
+
 
 print_head "Installing NodeJS"
 yum install nodejs -y &>>${log_file}
 status_check $?
-echo $?
+
 
 print_head "Create RoboShop User"
 useradd roboshop &>>${log_file}
 status_check $?
-echo $?
+
 
 print_head "Creating Application Directory"
 mkdir /app &>>${log_file}
 status_check $?
-echo $?
+
 
 print_head "Deleting Old Content"
 rm -rf /app/* &>>${log_file}
 status_check $?
-echo $?
+
 
 print_head "Downloading App content"
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>>${log_file}
 status_check $?
-echo $?
+
 cd /app
 
 print_head "Extracting App Content"
