@@ -16,8 +16,24 @@ status_check() {
   fi
 }
 
+schema_setup() {
 
-NODEJS() {
+    if [ "${schema_type}" == "mongo" ]; then
+      print_head "Copy MongoDB repo file "
+      cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
+      status_check $?
+
+      print_head "Installing Mongo Client"
+      yum install mongodb-org-shell -y &>>${log_file}
+      status_check $?
+
+      print_head "Load Schema "
+      mongo --host mongodb.saraldevops.online </app/schema/${component}.js &>>${log_file}
+      status_check $?
+    fi 
+}
+
+nodejs() {
 
 
   print_head "Configure NodeJS repo"
@@ -81,16 +97,8 @@ NODEJS() {
   systemctl restart ${component} &>>${log_file} ## better to give restart instead of start so that any changes occur it gets impacted
   status_check $?
 
-  print_head "Copy MongoDB repo file "
-  cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
-  status_check $?
+  schema_setup
 
-  print_head "Installing Mongo Client"
-  yum install mongodb-org-shell -y &>>${log_file}
-  status_check $?
 
-  print_head "Load Schema "
-  mongo --host mongodb.saraldevops.online </app/schema/${component}.js &>>${log_file}
-  status_check $?
 
 }
