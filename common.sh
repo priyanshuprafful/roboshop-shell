@@ -82,7 +82,7 @@ NODEJS() {
   status_check $?
 
   print_head "Copy MongoDB repo file "
-  cp ${code_dir}/${component}/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
+  cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
   status_check $?
 
   print_head "Installing Mongo Client"
