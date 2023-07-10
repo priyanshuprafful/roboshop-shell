@@ -30,7 +30,7 @@ schema_setup() {
       print_head "Load Schema "
       mongo --host mongodb.saraldevops.online </app/schema/${component}.js &>>${log_file}
       status_check $?
-    fi 
+    fi
 }
 
 nodejs() {
