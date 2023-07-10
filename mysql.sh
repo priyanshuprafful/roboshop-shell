@@ -10,6 +10,10 @@ print_head "Disabling MySql 8 version "
 yum module disable mysql -y &>>${log_file}
 status_check $?
 
+print_head "Copy MySql Repo File"
+cp ${code_dir}/configs/mysql.repo /etc/yum/repos.d/mysql.repo &>>${log_file}
+status_check $?
+
 print_head "Installing Mysql Server"
 yum install mysql-community-server -y &>>${log_file}
 status_check $?
