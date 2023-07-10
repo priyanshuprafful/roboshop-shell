@@ -11,7 +11,7 @@ yum module disable mysql -y &>>${log_file}
 status_check $?
 
 print_head "Copy MySql Repo File"
-cp ${code_dir}/configs/mysql.repo /etc/yum/repos.d/mysql.repo &>>${log_file}
+cp ${code_dir}/configs/mysql.repo /etc/yum.repos.d/mysql.repo &>>${log_file}
 status_check $?
 
 print_head "Installing Mysql Server"
