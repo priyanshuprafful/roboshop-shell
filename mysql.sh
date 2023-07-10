@@ -12,7 +12,7 @@ status_check $?
 
 print_head "Installing Mysql Server"
 yum install mysql-community-server -y &>>${log_file}
-status_chek $?
+status_check $?
 
 print_head "Enable MySql Service"
 systemctl enable mysqld &>>${log_file}
