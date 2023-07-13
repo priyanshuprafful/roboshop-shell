@@ -133,7 +133,7 @@ java() {
 
 
 
-
+  systemd_setup
 
   schema_setup # it is a function we have defined above
 
