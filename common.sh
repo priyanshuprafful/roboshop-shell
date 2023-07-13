@@ -56,7 +56,7 @@ schema_setup() {
       status_check $?
 
       print_head "Load Schema"
-      mysql -h mysql.saraldevops.online -uroot -p${mysql_root_password} < /app/schema/${component}.sql # loading the schema and connecting to the server
+      mysql -h mysql.saraldevops.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>${log_file}# loading the schema and connecting to the server
       status_check $?
     fi
 }
