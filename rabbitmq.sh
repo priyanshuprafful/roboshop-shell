@@ -3,7 +3,7 @@ source common.sh
 user_name=$1
 roboshop_app_password=$2
 
-if [-z "${user_name}" ]; then
+if [ -z "${user_name}" ]; then
   echo -e "\e[31mMissing RoboShop App UserName \e[0m"
   exit 1
 fi
