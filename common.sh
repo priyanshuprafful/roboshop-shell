@@ -54,7 +54,7 @@ schema_setup() {
     status_check $?
 
     print_head "Load Schema"
-    mysql -h mysql.saraldevops.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>$log_file# loading the schema and connecting to the server
+    mysql -h mysql.saraldevops.online -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>$log_file # loading the schema and connecting to the server
     status_check $?
   fi
 
@@ -130,10 +130,6 @@ java() {
   mvn clean package &>>${log_file}
   mv target/${component}-1.0.jar ${component}.jar &>>${log_file}
   status_check $?
-
-
-
-  systemd_setup
 
   schema_setup # it is a function we have defined above
 
