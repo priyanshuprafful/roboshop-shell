@@ -17,7 +17,7 @@ status_check() {
 }
 
 systemd_setup() {
-  print_head "Copy SystemD service File"
+    print_head "Copy SystemD service File"
     cp ${code_dir}/configs/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
     status_check $?
 
@@ -35,30 +35,31 @@ systemd_setup() {
 }
 
 schema_setup() {
+  if [ "${schema_type}" == "mongo" ]; then
+    print_head "Copy MongoDB repo file "
+    cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
+    status_check $?
 
-    if [ "${schema_type}" == "mongo" ]; then
-      print_head "Copy MongoDB repo file "
-      cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
-      status_check $?
+    print_head "Installing Mongo Client"
+    yum install mongodb-org-shell -y &>>${log_file}
+    status_check $?
 
-      print_head "Installing Mongo Client"
-      yum install mongodb-org-shell -y &>>${log_file}
-      status_check $?
+    print_head "Load Schema "
+    mongo --host mongodb.saraldevops.online </app/schema/${component}.js &>>${log_file}
+    status_check $?
 
-      print_head "Load Schema "
-      mongo --host mongodb.saraldevops.online </app/schema/${component}.js &>>${log_file}
-      status_check $?
+  elif [ "${schema_type}" == "mysql" ]; then
+    print_head "Install MySql Client"
+    yum install mysql -y &>>${log_file}
+    status_check $?
 
-    elif [ "${schema_type}" == "mysql" ]; then
+    print_head "Load Schema"
+    mysql -h mysql.saraldevops.online -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>${log_file}# loading the schema and connecting to the server
+    status_check $?
+  fi
 
-      print_head "Install MySql Client"
-      yum install mysql -y &>>${log_file}
-      status_check $?
 
-      print_head "Load Schema"
-      mysql -h mysql.saraldevops.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>${log_file}# loading the schema and connecting to the server
-      status_check $?
-    fi
+
 }
 app_prereq_setup() {
   print_head "Create RoboShop User"
