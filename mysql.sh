@@ -23,7 +23,7 @@ systemctl enable mysqld &>>${log_file}
 status_check $?
 
 print_head "Starting mysql service"
-systemctl restart mysqld &>>${log_file}
+systemctl start mysqld &>>${log_file}
 status_check $?
 
 print_head "Set Password"
