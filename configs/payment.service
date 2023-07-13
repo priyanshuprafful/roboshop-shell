@@ -1,0 +1,23 @@
+[Unit]
+Description=Payment Service
+
+[Service]
+User=root
+WorkingDirectory=/app
+Environment=CART_HOST=cart.saraldevops.online
+Environment=CART_PORT=8080
+Environment=USER_HOST=user.saraldevops.online
+Environment=USER_PORT=8080
+Environment=AMQP_HOST=rabbitmq.saraldevops.online
+Environment=AMQP_USER=roboshop
+Environment=AMQP_PASS=ROBOSHOP_USER_PASSWORD
+
+ExecStart=/usr/local/bin/uwsgi --ini payment.ini
+ExecStop=/bin/kill -9 $MAINPID
+SyslogIdentifier=payment
+
+[Install]
+WantedBy=multi-user.target
+
+# here in Environment=AMQP_PASS=ROBOSHOP_USER_PASSWORD we are giving ROBOSHOP_USER_PASSWORD as the keyword
+# this keyword need to be replaced with password given by the user
