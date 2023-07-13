@@ -49,7 +49,7 @@ schema_setup() {
       mongo --host mongodb.saraldevops.online </app/schema/${component}.js &>>${log_file}
       status_check $?
 
-    elif [ "${schema_type}" =="mysql"]; then
+    elif [ "${schema_type}" =="mysql" ]; then
 
       print_head "Install MySql Client"
       yum install mysql -y &>>${log_file}
@@ -129,7 +129,7 @@ java() {
   mv target/${component}-1.0.jar ${component}.jar &>>${log_file}
   status_check $?
 
-  app_prereq_setup
+
 
   systemd_setup # it is a function we have defined above
 
