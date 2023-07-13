@@ -129,6 +129,8 @@ java() {
   mv target/${component}-1.0.jar ${component}.jar &>>${log_file}
   status_check $?
 
+  app_prereq_setup
+
   systemd_setup # it is a function we have defined above
 
   schema_setup # it is a function we have defined above
