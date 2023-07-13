@@ -112,9 +112,10 @@ nodejs() {
   npm install &>>${log_file}
   status_check $?
 
-  systemd_setup
 
   schema_setup
+
+  systemd_setup
 }
 
 java() {
@@ -131,9 +132,11 @@ java() {
 
 
 
-  systemd_setup # it is a function we have defined above
+
 
   schema_setup # it is a function we have defined above
+
+  systemd_setup # it is a function we have defined above
 
 #  systemctl daemon-reload # after loading the schema then only we are starting these services it is also fine
  # systemctl enable shipping # after loading the schema then only we are starting these services it is also fine
